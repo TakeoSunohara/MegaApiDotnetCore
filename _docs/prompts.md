@@ -1,19 +1,23 @@
-contexto:
-Este projeto é um projeto de uma api feito em dotnet, para listar os dados dos bosses de megaman, o objetivo principal é ser um backend que fornece jsons no formato abaixo:
+Contexto:
+Este é um projeto de uma API criado em Dotnet com a função de listar os dados/status dos bosses do jogo Megaman. O objetivo principal é o de ser um backend para fornecer arquivos jsons no formato abaixo:
 
-```
+'''
+
 {
-  Id =1,
+
+  Id = 1,
   Code = "DLN/DRN-003",
   Name = "Cutman",
   HP = 150,
   Picture = "https://vignette.wikia.nocookie.net/megaman/images/2/22/Cutman.png"
+
 }
-```
 
-Especificações do projeto:
+'''
 
-```
+Especificações do Projeto:
+'''
+
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
@@ -31,12 +35,13 @@ Especificações do projeto:
   </ItemGroup>
 
 </Project>
-```
 
-os endpoints do projeto são:
+'''
+
+Os endpoints do projeto são:
+'''
+
 namespace Megaman.Controllers
-
-```
 {
     //api/v1/robots
     [ApiController]
@@ -50,7 +55,7 @@ namespace Megaman.Controllers
         }
 
         //GET api/robots
-        [HttpGet]
+        [HttpGet] 
         public ActionResult<IEnumerable<RobotReadDTO>> GetAllRobots()
         {
             var robotItems = _services.SearchAll();
@@ -61,13 +66,13 @@ namespace Megaman.Controllers
         [HttpGet]
         [Route("{id:int}")]
         public object GetCommandById([FromRoute]int id)
-        {
+        {   
             var robot = _services.SearchById(id);
 
             if(robot != null)
                 return Ok(robot);
-
-                return NotFound(
+            
+                return NotFound( 
                         new { message = "Nenhum robo encontrado" }
                 );
         }
@@ -81,15 +86,15 @@ namespace Megaman.Controllers
 
     }
 }
-```
 
-REGRAS:
+'''
 
-- Sempre que citar alguma dependência do projeto, deixe ela como hyperlink para a página oficial daquela dependência
+Regras:
+- Sempre que citar alguma dependência do projeto, tranforme ele como um hyperlink da página oficial da dependência citada
 - Organize as dependências em uma sessão em formato de tabela
+- Crie uma lista com os endpoints
 
-- crie uma estrutura do projeto com base na arvore de pastas abaixo, e crie uma sessão para explicitar as técnicas utilizadas
-
+- Crie uma estrutura do projeto com base na árvore de pastas abaixo; e crie uma sessão para destexplicitar as técnicas utilizadas
 .vs
 .vscode
 bin
@@ -101,9 +106,9 @@ obj
 Properties
 Services
 appsettings.Development.json
-appsettings.json  
+appsettings.json
 global.json
-MegamanApi.csproj  
+MegamanApi.csproj
 MegamanApi.sln
 Program.cs
 Startup.cs
